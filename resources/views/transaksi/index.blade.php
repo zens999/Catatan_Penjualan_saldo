@@ -24,49 +24,51 @@
     </div>
 
     <!-- Transaction Table -->
-    <table class="min-w-full bg-white border border-gray-300">
-        <thead>
-            <tr class="bg-gray-50">
-                <th class="py-2 px-4 border-b text-left">No</th>
-                <th class="py-2 px-4 border-b text-left">Nama Pembeli</th>
-                <th class="py-2 px-4 border-b text-left">Nomor</th>
-                <th class="py-2 px-4 border-b text-left">Jenis Transaksi</th>
-                <th class="py-2 px-4 border-b text-left">Jumlah Beli</th>
-                <th class="py-2 px-4 border-b text-left">Harga</th>
-                <th class="py-2 px-4 border-b text-left">Metode Pembayaran</th>
-                <th class="py-2 px-4 border-b text-left">Uang Masuk</th>
-                <th class="py-2 px-4 border-b text-left">Kembalian</th>
-                <th class="py-2 px-4 border-b text-left">Sisa Hutang</th>
-                <th class="py-2 px-4 border-b text-left">Status</th>
-                <th class="py-2 px-4 border-b text-left">Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($transaksis as $transaksi)
-            <tr class="hover:bg-gray-100">
-                <td class="py-2 px-4 border-b">{{ $loop->iteration }}</td>
-                <td class="py-2 px-4 border-b">{{ $transaksi->nama_pembeli }}</td>
-                <td class="py-2 px-4 border-b">{{ $transaksi->nomor }}</td>
-                <td class="py-2 px-4 border-b">{{ $transaksi->jenis_transaksi }}</td>
-                <td class="py-2 px-4 border-b">{{ number_format($transaksi->jumlah_beli, 0, ',', '.') }}</td>
-                <td class="py-2 px-4 border-b">{{ number_format($transaksi->harga, 0, ',', '.') }}</td>
-                <td class="py-2 px-4 border-b">{{ $transaksi->metode_pembayaran }}</td>
-                <td class="py-2 px-4 border-b">{{ number_format($transaksi->uang_masuk, 0, ',', '.') }}</td>
-                <td class="py-2 px-4 border-b">{{ number_format($transaksi->kembalian, 0, ',', '.') }}</td>
-                <td class="py-2 px-4 border-b">{{ is_numeric($transaksi->sisa_hutang) ? number_format($transaksi->sisa_hutang, 0, ',', '.') : $transaksi->sisa_hutang }}</td>
-                <td class="py-2 px-4 border-b">
-                    <span class="{{ $transaksi->status === 'lunas' ? 'bg-green-500 text-white' : 'bg-red-500 text-white' }} inline-block px-2 py-1 rounded">
-                        {{ ucfirst($transaksi->status) }}
-                    </span>
-                </td>                                
-                <td class="py-2 px-4 border-b">
-                    @if ($transaksi->status === 'belum_lunas')
-                        <a href="{{ route('transaksis.edit', $transaksi->id) }}" class="text-blue-500 hover:underline">Edit</a>
-                    @endif
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-300">
+            <thead>
+                <tr class="bg-gray-50">
+                    <th class="py-2 px-4 border-b text-left">No</th>
+                    <th class="py-2 px-4 border-b text-left">Nama Pembeli</th>
+                    <th class="py-2 px-4 border-b text-left">Nomor</th>
+                    <th class="py-2 px-4 border-b text-left">Jenis Transaksi</th>
+                    <th class="py-2 px-4 border-b text-left">Jumlah Beli</th>
+                    <th class="py-2 px-4 border-b text-left">Harga</th>
+                    <th class="py-2 px-4 border-b text-left">Metode Pembayaran</th>
+                    <th class="py-2 px-4 border-b text-left">Uang Masuk</th>
+                    <th class="py-2 px-4 border-b text-left">Kembalian</th>
+                    <th class="py-2 px-4 border-b text-left">Sisa Hutang</th>
+                    <th class="py-2 px-4 border-b text-left">Status</th>
+                    <th class="py-2 px-4 border-b text-left">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($transaksis as $transaksi)
+                <tr class="hover:bg-gray-100">
+                    <td class="py-2 px-4 border-b">{{ $loop->iteration }}</td>
+                    <td class="py-2 px-4 border-b">{{ $transaksi->nama_pembeli }}</td>
+                    <td class="py-2 px-4 border-b">{{ $transaksi->nomor }}</td>
+                    <td class="py-2 px-4 border-b">{{ $transaksi->jenis_transaksi }}</td>
+                    <td class="py-2 px-4 border-b">{{ number_format($transaksi->jumlah_beli, 0, ',', '.') }}</td>
+                    <td class="py-2 px-4 border-b">{{ number_format($transaksi->harga, 0, ',', '.') }}</td>
+                    <td class="py-2 px-4 border-b">{{ $transaksi->metode_pembayaran }}</td>
+                    <td class="py-2 px-4 border-b">{{ number_format($transaksi->uang_masuk, 0, ',', '.') }}</td>
+                    <td class="py-2 px-4 border-b">{{ number_format($transaksi->kembalian, 0, ',', '.') }}</td>
+                    <td class="py-2 px-4 border-b">{{ is_numeric($transaksi->sisa_hutang) ? number_format($transaksi->sisa_hutang, 0, ',', '.') : $transaksi->sisa_hutang }}</td>
+                    <td class="py-2 px-4 border-b">
+                        <span class="{{ $transaksi->status === 'lunas' ? 'bg-green-500 text-white' : 'bg-red-500 text-white' }} inline-block px-2 py-1 rounded">
+                            {{ ucfirst($transaksi->status) }}
+                        </span>
+                    </td>
+                    <td class="py-2 px-4 border-b">
+                        @if ($transaksi->status === 'belum_lunas')
+                            <a href="{{ route('transaksis.edit', $transaksi->id) }}" class="text-blue-500 hover:underline">Edit</a>
+                        @endif
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 @endsection

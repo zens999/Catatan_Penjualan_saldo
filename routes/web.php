@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AdminTransaksiController;
+use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -55,5 +56,5 @@ Route::get('admin/users/{user}/add-saldo', [UserController::class, 'showAddSaldo
 Route::post('admin/users/{user}/add-saldo', [UserController::class, 'addSaldo'])->name('admin.users.storeSaldo');
 
 Route::patch('/notifications/{id}/markAsRead', [NotificationController::class, 'markAsRead'])->name('notifications.markAsread');
-
-
+Route::get('/laporan', [ReportController::class, 'index'])->name('laporan.index');
+Route::get('reports/export-pdf', [ReportController::class, 'exportPDF'])->name('reports.exportPDF');

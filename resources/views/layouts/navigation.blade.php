@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('setor.index')" :active="request()->routeIs('setor.index')">
                         {{ __('Setor') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('laporan.index')" :active="request()->routeIs('laporan.index')">
+                        {{ __('Laporan') }}
+                    </x-nav-link>
                     @auth
                         @if (auth()->user()->role == 'admin')
                             <x-nav-link :href="route('admin.transaksilogs.index')" :active="request()->routeIs('admin.transaksilogs.index')">
